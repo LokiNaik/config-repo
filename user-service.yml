@@ -1,6 +1,11 @@
 spring:
   application:
     name: user-service
+# Local Profile Configuration
+spring:
+  config:
+    activate:
+      on-profile: local  # This section applies only when the 'local' profile is active
   datasource:
     url: jdbc:mysql://localhost:3306/userdb  # MySQL database URL
     username: root  # Database username
@@ -13,3 +18,23 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect  # MySQL dialect for Hibernate
     show-sql: true
+---
+
+# Dev Profile Configuration
+spring:
+  config:
+    activate:
+      on-profile: dev  # This section applies only when the 'dev' profile is active
+
+  datasource:
+    url: jdbc:mysql://dev-db-server:3306/userdb
+    username: devuser
+    password: devpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
