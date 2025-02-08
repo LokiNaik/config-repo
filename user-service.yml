@@ -2,7 +2,6 @@ spring:
   application:
     name: user-service
 # Local Profile Configuration
-spring:
   config:
     activate:
       on-profile: local  # This section applies only when the 'local' profile is active
