@@ -1,12 +1,15 @@
 # application.yml (common config file)
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/mydb
-    username: root
-    password: root
+# spring:
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/mydb
+#     username: root
+#     password: root
 
----
+# ---
 spring:
+  config:
+    activate:
+      on-profile: dev
   profiles: dev
   datasource:
     url: jdbc:mysql://localhost:3306/devdb
@@ -15,7 +18,9 @@ spring:
 
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
   datasource:
     url: jdbc:mysql://localhost:3306/proddb
     username: root
@@ -23,7 +28,9 @@ spring:
 
 ---
 spring:
-  profiles: local
+  config:
+    activate:
+      on-profile: local
   datasource:
     url: jdbc:mysql://localhost:3306/localdb
     username: root
