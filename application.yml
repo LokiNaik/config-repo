@@ -36,16 +36,14 @@
 #     username: root
 #     password: root
 
-spring:
-  application:
-    name: config-repo
-
 # Common properties shared across different services
 server:
   port: 8080
 
 # If you have shared properties like database configurations, put them here
 spring:
+  application:
+    name: config-repo
   datasource:
     url: jdbc:mysql://localhost:3306/mydb
     username: root
