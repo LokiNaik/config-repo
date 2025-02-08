@@ -6,32 +6,58 @@
 #     password: root
 
 # ---
-spring:
-  config:
-    activate:
-      on-profile: dev
-  profiles: dev
-  datasource:
-    url: jdbc:mysql://localhost:3306/devdb
-    username: root
-    password: root
+# spring:
+#   config:
+#     activate:
+#       on-profile: dev
+#   profiles: dev
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/devdb
+#     username: root
+#     password: root
 
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-  datasource:
-    url: jdbc:mysql://localhost:3306/proddb
-    username: root
-    password: root
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: prod
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/proddb
+#     username: root
+#     password: root
 
----
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: local
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/localdb
+#     username: root
+#     password: root
+
+
 spring:
+  profiles: native
   config:
     activate:
       on-profile: local
-  datasource:
-    url: jdbc:mysql://localhost:3306/localdb
-    username: root
-    password: root
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/LokiNaik/config-repo.git   # Replace with your Git repo URL
+          searchPaths:
+            - application
+          cloneOnStart: true
+          # username: <your-git-username>  # If authentication is needed
+          # password: <your-git-password>  # If authentication is needed
+
+# Optional: If you're using Spring Actuator, you can enable health checks:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
