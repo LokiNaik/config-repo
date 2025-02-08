@@ -7,10 +7,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true #Need to remove this to turn off the sql.
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
-    show-sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        ddl-auto: create-drop
 
 
 
