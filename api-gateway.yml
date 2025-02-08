@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: api-gateway
+  zuul:
+    routes:
+      user-service:
+        path: /user/**
+        service-id: user-service
+      order-service:
+        path: /order/**
+        service-id: order-service
