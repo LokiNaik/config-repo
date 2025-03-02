@@ -15,6 +15,37 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
         ddl-auto: create-drop
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000  # 5 seconds
+        readTimeout: 10000    # 10 seconds
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 10
+      hotelService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 10
+
 
 
 
